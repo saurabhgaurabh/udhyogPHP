@@ -1,17 +1,40 @@
-on: push
-name: deploy website on push
-jobs: 
-web-deploy: 
-name: Deploy
-runs-on: ubuntu-latest
-steps: 
-- name: get latest code
-uses: actions/checkout@v
+# on: push
+# name: deploy website on push
+# jobs: 
+# web-deploy: 
+# name: Deploy
+# runs-on: ubuntu-latest
+# steps: 
+# - name: get latest code
+# uses: actions/checkout@v
 
--name: sync files
-uses: SamKirkland/FTP-Deploy-Action@v4.3.5
- with:
-          server: ftp.patiramproduction.com
-          username: udhyogPHP@motion.patiramproduction.com
+# -name: sync files
+# uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+#  with:
+#           server: ftp.patiramproduction.com
+#           username: udhyogPHP@motion.patiramproduction.com
+#           password: ${{ secrets.FTP_PASSWORD }}
+#           server-dir: public_html/motion/
+
+
+name: 🚀 Deploy to FTP
+
+on:
+  push:
+    branches:
+      - main   # or your branch name
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get latest code
+        uses: actions/checkout@v3
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server:  ftp.patiramproduction.com
+          username: motionPHP@motion.patiramproduction.com
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: public_html/motion/
