@@ -11,7 +11,7 @@ uses: actions/checkout@v
 -name: sync files
 uses: SamKirkland/FTP-Deploy-Action@v4.3.5
  with:
-          server: motion.patiramproduction.com
-          username: motionftp@patiramproduction.com
+          server: ftp.patiramproduction.com
+          username: udhyogPHP@motion.patiramproduction.com
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: public_html/motion/
